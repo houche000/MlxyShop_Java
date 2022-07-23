@@ -1,0 +1,89 @@
+package com.zbkj.service.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.github.pagehelper.PageInfo;
+import com.zbkj.common.model.finance.UserExtract;
+import com.zbkj.common.request.PageParamRequest;
+import com.zbkj.common.request.UserExtractRequest;
+import com.zbkj.common.request.UserExtractSearchRequest;
+import com.zbkj.common.response.BalanceResponse;
+import com.zbkj.common.response.UserExtractRecordResponse;
+import com.zbkj.common.response.UserExtractResponse;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+/**
+* UserExtractService 接口
+*  +----------------------------------------------------------------------
+
+ *  +----------------------------------------------------------------------
+
+ *  +----------------------------------------------------------------------
+
+ *  +----------------------------------------------------------------------
+
+ *  +----------------------------------------------------------------------
+*/
+public interface UserExtractService extends IService<UserExtract> {
+
+    List<UserExtract> getList(UserExtractSearchRequest request, PageParamRequest pageParamRequest);
+
+    /**
+     * 提现总金额
+     */
+    BalanceResponse getBalance(String dateLimit, Integer type);
+
+    /**
+     * 提现总金额
+     *
+     * @return BalanceResponse
+     * @author Mr.Zhang
+     * @since 2020-05-11
+     */
+    BigDecimal getWithdrawn(String startTime, String endTime, Integer type);
+
+    UserExtractResponse getUserExtractByUserId(Integer userId, Integer type);
+
+    /**
+     * 提现审核
+     * @param id    提现申请id
+     * @param status 审核状态 -1 未通过 0 审核中 1 已提现
+     * @param backMessage   驳回原因
+     * @return  审核结果
+     */
+    Boolean updateStatus(Integer id,Integer status,String backMessage);
+
+    /**
+     * 获取提现记录列表
+     *
+     * @param userId           用户uid
+     * @param pageParamRequest 分页参数
+     * @return PageInfo
+     */
+    PageInfo<UserExtractRecordResponse> getExtractRecord(Integer userId, Integer type, PageParamRequest pageParamRequest);
+
+    BigDecimal getExtractTotalMoney(Integer userId, Integer type);
+
+    /**
+     * 提现申请
+     * @return Boolean
+     */
+    Boolean extractApply(UserExtractRequest request);
+
+    /**
+     * 修改提现申请
+     * @param id 申请id
+     * @param userExtractRequest 具体参数
+     */
+    Boolean updateExtract(Integer id, UserExtractRequest userExtractRequest);
+
+    /**
+     * 提现申请待审核数量
+     *
+     * @return Integer
+     */
+    Integer getNotAuditNum(Integer type);
+
+    Boolean changeExtractStatusById(Integer id,Integer status);
+}

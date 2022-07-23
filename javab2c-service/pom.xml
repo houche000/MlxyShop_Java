@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>javab2c</artifactId>
+        <groupId>com.zbkj</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>javab2c-service</artifactId>
+    <name>javab2c-service</name>
+
+    <properties>
+        <javab2c-common>0.0.1-SNAPSHOT</javab2c-common>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.zbkj</groupId>
+            <artifactId>javab2c-common</artifactId>
+            <version>${javab2c-common}</version>
+        </dependency>
+    </dependencies>
+
+</project>
